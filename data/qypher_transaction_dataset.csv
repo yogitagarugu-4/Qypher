@@ -1,0 +1,31 @@
+transaction_id,timestamp,amount,location,merchant_category,payment_method,device_id,transaction_type,hour,is_new_device,distance_from_usual,failed_attempts
+TXN000001,2026-01-15 20:21:07,16.88,Phoenix,Entertainment,Debit Card,DEV-0038,bill_payment,20,False,21.59,0
+TXN000002,2026-01-15 05:32:58,73.57,Chicago,Retail,Debit Card,DEV-0014,transfer,5,False,28.6,0
+TXN000003,2026-01-15 00:38:20,159.38,Dallas,Grocery,Credit Card,DEV-0063,refund,0,False,9.23,1
+TXN000004,2026-01-15 02:46:31,195.45,Phoenix,Travel,Debit Card,DEV-0009,transfer,2,False,4.95,0
+TXN000005,2026-01-15 19:27:13,179.18,Atlanta,Fuel,Digital Wallet,DEV-0070,bill_payment,19,False,13.14,0
+TXN000006,2026-01-15 03:15:14,104.17,Phoenix,Pharmacy,Credit Card,DEV-0009,withdrawal,3,False,0.22,0
+TXN000007,2026-01-15 01:14:04,50.46,Austin,Pharmacy,Credit Card,DEV-0005,withdrawal,1,False,6.43,0
+TXN000008,2026-01-15 18:36:30,26.04,Seattle,Streaming,Bank Transfer,DEV-0032,transfer,18,False,10.63,0
+TXN000009,2026-01-15 23:03:43,133.8,Seattle,Coffee Shop,Credit Card,DEV-0084,bill_payment,23,False,3.28,0
+TXN000010,2026-01-15 17:28:08,52.47,Miami,Dining,Digital Wallet,DEV-0055,bill_payment,17,False,13.29,0
+TXN000011,2026-01-15 17:06:03,267.97,Seattle,Travel,Credit Card,DEV-0084,purchase,17,False,4.99,0
+TXN000012,2026-01-15 03:55:25,1707.77,Paris,Crypto Exchange,Credit Card,DEV-0008,cash_advance,3,True,1800.53,5
+TXN000013,2026-01-15 09:27:44,67.65,San Francisco,Travel,Bank Transfer,DEV-0094,transfer,9,False,1.75,0
+TXN000014,2026-01-15 01:47:20,166.3,Boston,Grocery,Bank Transfer,DEV-0008,withdrawal,1,False,1.71,0
+TXN000015,2026-01-15 05:04:38,170.07,Phoenix,Fuel,Bank Transfer,DEV-0009,purchase,5,False,17.37,1
+TXN000016,2026-01-15 13:42:37,71.56,Chicago,Travel,Digital Wallet,DEV-0073,refund,13,False,7.16,0
+TXN000017,2026-01-15 21:41:19,87.91,Chicago,Pharmacy,Credit Card,DEV-0059,purchase,21,False,29.88,1
+TXN000018,2026-01-15 16:16:08,58.45,Chicago,Coffee Shop,Debit Card,DEV-0045,refund,16,False,16.3,0
+TXN000019,2026-01-15 20:33:00,271.39,Austin,Travel,Digital Wallet,DEV-0086,purchase,20,False,3.46,0
+TXN000020,2026-01-15 17:09:17,71.38,Boston,Utilities,Debit Card,DEV-0037,refund,17,False,7.92,0
+TXN000021,2026-01-15 01:05:40,66.7,Miami,Retail,Credit Card,DEV-0055,purchase,1,False,29.39,0
+TXN000022,2026-01-15 14:35:45,36.47,Miami,Travel,Credit Card,DEV-0055,purchase,14,False,27.12,0
+TXN000023,2026-01-15 11:37:35,99.85,Chicago,Entertainment,Debit Card,DEV-0019,purchase,11,False,23.88,0
+TXN000024,2026-01-15 11:13:43,160.3,Seattle,Coffee Shop,Digital Wallet,DEV-0032,withdrawal,11,False,18.62,0
+TXN000025,2026-01-15 07:55:10,216.35,Dallas,Entertainment,Credit Card,DEV-0023,transfer,7,False,27.92,0
+TXN000026,2026-01-15 23:51:15,158.27,Austin,Dining,Credit Card,DEV-0035,bill_payment,23,False,6.67,0
+TXN000027,2026-01-15 14:22:19,77.74,San Francisco,Fuel,Credit Card,DEV-0030,transfer,14,False,2.08,0
+TXN000028,2026-01-15 11:41:32,47.37,Austin,Travel,Digital Wallet,DEV-0052,purchase,11,False,5.36,0
+TXN000029,2026-01-15 08:02:06,134.7,Austin,Entertainment,Digital Wallet,DEV-0077,refund,8,False,3.47,0
+TXN000030,2026-01-15 06:16:02,267.76,Dallas,Entertainment,Credit Card,DEV-0091,withdrawal,6,False,21.58,0

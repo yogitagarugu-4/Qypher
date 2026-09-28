@@ -1,0 +1,31 @@
+transaction_id,timestamp,transaction_ref,user_id,amount,currency,merchant_category,transaction_type,hour,location,device_id,is_new_device,distance_from_usual,payment_method,failed_attempts,transactions_last_hour,new_device,label
+1,2026-09-01 09:12,TXN1001,EMP101,12500,INR,Office Supplies,Purchase,9,Vijayawada,Laptop-01,0,2.1,UPI,1,0,0,Normal
+2,2026-09-01 10:05,TXN1002,EMP102,8200,INR,Utilities,Bill Payment,10,Vijayawada,Laptop-02,0,1.8,BankTransfer,1,0,0,Normal
+3,2026-09-01 11:20,TXN1003,EMP103,15600,INR,Payroll,Transfer,11,Guntur,Laptop-03,0,3.4,UPI,1,0,0,Normal
+4,2026-09-01 13:45,TXN1004,EMP101,9800,INR,Vendor Payment,Purchase,13,Vijayawada,Laptop-01,0,2.5,UPI,1,0,0,Normal
+5,2026-09-01 15:10,TXN1005,EMP104,22000,INR,Inventory,Transfer,15,Hyderabad,Laptop-04,0,6.2,BankTransfer,1,0,0,Normal
+6,2026-09-02 09:35,TXN1006,EMP102,7500,INR,Office Supplies,Purchase,9,Vijayawada,Laptop-02,0,2.0,UPI,1,0,0,Normal
+7,2026-09-02 10:40,TXN1007,EMP103,18400,INR,Utilities,Bill Payment,10,Guntur,Laptop-03,0,4.1,UPI,1,0,0,Normal
+8,2026-09-02 14:15,TXN1008,EMP101,11200,INR,Vendor Payment,Transfer,14,Vijayawada,Laptop-01,0,2.8,UPI,1,0,0,Normal
+9,2026-09-03 09:50,TXN1009,EMP104,24500,INR,Inventory,Purchase,9,Hyderabad,Laptop-04,0,5.5,BankTransfer,1,0,0,Normal
+10,2026-09-03 16:05,TXN1010,EMP102,9100,INR,Payroll,Transfer,16,Vijayawada,Laptop-02,0,2.3,UPI,1,0,0,Normal
+11,2026-09-04 11:10,TXN1011,EMP103,13200,INR,Vendor Payment,Purchase,11,Guntur,Laptop-03,0,3.7,UPI,1,0,0,Normal
+12,2026-09-04 14:30,TXN1012,EMP101,10500,INR,Utilities,Bill Payment,14,Vijayawada,Laptop-01,0,2.2,UPI,1,0,0,Normal
+13,2026-09-05 10:15,TXN1013,EMP104,27500,INR,Office Supplies,Purchase,10,Hyderabad,Laptop-04,0,6.0,BankTransfer,1,0,0,Normal
+14,2026-09-05 12:40,TXN1014,EMP102,6800,INR,Inventory,Transfer,12,Vijayawada,Laptop-02,0,1.9,UPI,1,0,0,Normal
+15,2026-09-06 09:25,TXN1015,EMP101,14300,INR,Payroll,Transfer,9,Vijayawada,Laptop-01,0,2.6,UPI,1,0,0,Normal
+16,2026-09-06 17:20,TXN1016,EMP103,19700,INR,Vendor Payment,Purchase,17,Guntur,Laptop-03,0,4.0,UPI,1,0,0,Normal
+17,2026-09-07 10:05,TXN1017,EMP104,31000,INR,Utilities,Bill Payment,10,Hyderabad,Laptop-04,0,5.8,BankTransfer,1,0,0,Normal
+18,2026-09-07 13:10,TXN1018,EMP102,8600,INR,Inventory,Purchase,13,Vijayawada,Laptop-02,0,2.1,UPI,1,0,0,Normal
+19,2026-09-08 09:45,TXN1019,EMP101,11800,INR,Office Supplies,Purchase,9,Vijayawada,Laptop-01,0,2.4,UPI,1,0,0,Normal
+20,2026-09-08 15:35,TXN1020,EMP103,16100,INR,Payroll,Transfer,15,Guntur,Laptop-03,0,3.9,UPI,1,0,0,Normal
+21,2026-09-09 02:14,TXN1021,EMP101,185000,INR,Electronics,Transfer,2,Mumbai,Unknown-Device,1,1250.0,BankTransfer,5,4,1,Anomaly
+22,2026-09-09 02:17,TXN1022,EMP101,210000,INR,Cryptocurrency Exchange,Transfer,2,Mumbai,Unknown-Device,1,1450.0,BankTransfer,4,3,1,Anomaly
+23,2026-09-09 02:21,TXN1023,EMP102,175000,INR,Luxury Goods,Purchase,2,Delhi,Unknown-Device,1,1700.0,UPI,6,5,1,Anomaly
+24,2026-09-09 03:02,TXN1024,EMP103,95000,INR,Electronics,Transfer,3,Bengaluru,Unknown-Device,1,820.0,UPI,3,2,1,Anomaly
+25,2026-09-10 01:45,TXN1025,EMP104,320000,INR,Cryptocurrency Exchange,Transfer,1,Chennai,Unknown-Device,1,1350.0,BankTransfer,8,7,1,Anomaly
+26,2026-09-10 23:58,TXN1026,EMP101,275000,INR,Luxury Goods,Purchase,23,Kolkata,Unknown-Device,1,1600.0,BankTransfer,5,4,1,Anomaly
+27,2026-09-11 02:30,TXN1027,EMP102,150000,INR,Electronics,Transfer,2,Mumbai,Unknown-Device,1,1450.0,UPI,7,6,1,Anomaly
+28,2026-09-11 03:15,TXN1028,EMP103,450000,INR,Luxury Goods,Transfer,3,Delhi,Unknown-Device,1,1800.0,BankTransfer,10,9,1,Anomaly
+29,2026-09-12 00:40,TXN1029,EMP104,125000,INR,Electronics,Purchase,0,Pune,Unknown-Device,1,1100.0,UPI,4,3,1,Anomaly
+30,2026-09-12 01:05,TXN1030,EMP101,380000,INR,Cryptocurrency Exchange,Transfer,1,Kochi,Unknown-Device,1,1550.0,BankTransfer,9,8,1,Anomaly
