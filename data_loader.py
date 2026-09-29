@@ -101,7 +101,14 @@ def _safe_fill_missing_values(df: pd.DataFrame) -> pd.DataFrame:
 
     for column in cleaned.columns:
         if pd.api.types.is_numeric_dtype(cleaned[column]):
-            cleaned[column] = cleaned[column].fillna(cleaned[column].median())
+            median_value = (
+                cleaned[column].median()
+                if cleaned[column].notna().any()
+                else 0
+            )
+            cleaned[column] = cleaned[column].fillna(
+                median_value if pd.notna(median_value) else 0
+            )
         else:
             cleaned[column] = cleaned[column].fillna("Unknown")
 
@@ -140,22 +147,7 @@ def _convert_boolean_columns(df: pd.DataFrame) -> pd.DataFrame:
     processed = df.copy()
 
     if "is_new_device" in processed.columns:
-        # Handle values that may be strings, booleans, or blanks.
-        processed["is_new_device"] = processed["is_new_device"].map({
-            True: 1,
-            False: 0,
-            "True": 1,
-            "False": 0,
-            "true": 1,
-            "false": 0,
-            "yes": 1,
-            "no": 0,
-            "Yes": 1,
-            "No": 0,
-            "Y": 1,
-            "N": 0,
-            "Unknown": 0,
-        }).fillna(0).astype(int)
+        processed["is_new_device"] = _normalize_boolean(processed["is_new_device"])
 
     return processed
 
@@ -223,23 +215,24 @@ CATEGORICAL_MODEL_FEATURES = [
 
 def _normalize_boolean(series: pd.Series) -> pd.Series:
     """Convert common true/false values into numeric 0/1 values."""
-    mapping = {
-        True: 1,
-        False: 0,
-        "True": 1,
-        "False": 0,
-        "true": 1,
-        "false": 0,
-        "yes": 1,
-        "no": 0,
-        "Yes": 1,
-        "No": 0,
-        "Y": 1,
-        "N": 0,
-        "Unknown": 0,
-        "unknown": 0,
-    }
-    return series.map(mapping).fillna(0).astype(int)
+    return series.map(normalize_boolean_value).astype(int)
+
+
+def normalize_boolean_value(value: Any) -> bool:
+    """Normalize boolean-like CSV and form values without Python string truthiness."""
+    if isinstance(value, bool):
+        return value
+    if pd.isna(value):
+        return False
+    if isinstance(value, (int, float)):
+        return value == 1
+
+    normalized = str(value).strip().lower()
+    if normalized in {"true", "yes", "y", "1"}:
+        return True
+    if normalized in {"false", "no", "n", "0", "", "unknown"}:
+        return False
+    return False
 
 
 def _ensure_model_columns(df: pd.DataFrame) -> pd.DataFrame:
@@ -264,7 +257,7 @@ def _ensure_model_columns(df: pd.DataFrame) -> pd.DataFrame:
                 if pd.isna(value):
                     counts.append(0)
                     continue
-                mask = (timestamps >= value - pd.Timedelta(hours=1)) & (timestamps <= value)
+                mask = (timestamps >= value - pd.Timedelta(1, unit="h")) & (timestamps <= value)
                 counts.append(int(mask.sum()))
             processed["transactions_last_hour"] = counts
         else:
@@ -312,7 +305,29 @@ def preprocess_transactions(df: pd.DataFrame) -> pd.DataFrame:
     """Clean and transform the transaction data for machine learning."""
     validate_required_columns(df)
 
-    processed = _safe_fill_missing_values(df)
+    processed = df.copy()
+    numeric_columns = ("amount", "hour", "distance_from_usual", "failed_attempts")
+    for column in numeric_columns:
+        raw_values = processed[column]
+        numeric_values = pd.to_numeric(raw_values, errors="coerce")
+        invalid_values = raw_values.notna() & numeric_values.isna()
+        if invalid_values.any():
+            raise ValueError(f"Transaction column '{column}' contains non-numeric values.")
+        if (numeric_values.abs() == float("inf")).any():
+            raise ValueError(f"Transaction column '{column}' must contain finite values.")
+        processed[column] = numeric_values
+
+    for column in ("amount", "distance_from_usual", "failed_attempts"):
+        if (processed[column].dropna() < 0).any():
+            raise ValueError(f"Transaction column '{column}' cannot contain negative values.")
+    for column in ("hour", "failed_attempts"):
+        if (processed[column].dropna() % 1 != 0).any():
+            raise ValueError(f"Transaction column '{column}' must contain whole numbers.")
+    invalid_hours = processed["hour"].dropna().lt(0) | processed["hour"].dropna().gt(23)
+    if invalid_hours.any():
+        raise ValueError("Transaction column 'hour' must be between 0 and 23.")
+
+    processed = _safe_fill_missing_values(processed)
     processed = _convert_time_features(processed)
     processed = _convert_boolean_columns(processed)
     processed = _ensure_model_columns(processed)
@@ -338,6 +353,10 @@ def get_features_for_anomaly_detection(df: pd.DataFrame) -> Dict[str, Any]:
     columns such as transaction_id, device_id, and user_id from being used as ML
     inputs. Categorical values are encoded through a sklearn ColumnTransformer.
     """
+    validate_required_columns(df)
+    if df.empty:
+        raise ValueError("At least one transaction is required for anomaly detection.")
+
     processed = preprocess_transactions(df)
     numeric_features, categorical_features = _select_model_features(processed)
 
